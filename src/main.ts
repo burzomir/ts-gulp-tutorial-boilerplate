@@ -1,8 +1,17 @@
-import { sayHello } from './greet';
+/// <reference path="../typings/index.d.ts" />
 
-function showHello(elName: string, name: string){
-    const elt = document.getElementById('greeting');
-    elt.innerText = sayHello(name);
+
+import { sayHello } from './greet';
+import * as $ from 'jquery';
+import * as moment from 'moment';
+
+function showHello(elName, name){
+    const elt = $('#greeting');
+    elt.html(`${sayHello(name)} ${moment().format('DD/MM/YYYY HH:ss')}`);
 }
 
-showHello('greeting', 'TypeScript');
+
+
+setInterval(() => {
+    showHello('greeting', 'TypeScript');
+}, 1000);
